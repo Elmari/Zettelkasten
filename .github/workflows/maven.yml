@@ -22,6 +22,9 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       run: mvn -B package -DskipTests --file pom.xml
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -40,7 +43,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         files: |
-          ./target/Zettelkasten-${{ github.ref }}.jar
-          ./target/Zettelkasten-${{ github.ref }}.exe
-          ./target/Zettelkasten-${{ github.ref }}.app
-          ./target/Zettelkasten-${{ github.ref }}.dmg
+          ./target/Zettelkasten-${{ steps.get_version.outputs.VERSION }}.jar
+          ./target/Zettelkasten-${{ steps.get_version.outputs.VERSION }}.exe
+          ./target/Zettelkasten-${{ steps.get_version.outputs.VERSION }}.app
+          ./target/Zettelkasten-${{ steps.get_version.outputs.VERSION }}.dmg
