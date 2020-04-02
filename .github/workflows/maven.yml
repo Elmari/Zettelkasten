@@ -43,7 +43,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         files: |
-          ./target/Zettelkasten-${{ steps.get_version.outputs.VERSION }}.jar
-          ./target/Zettelkasten-${{ steps.get_version.outputs.VERSION }}.exe
-          ./target/Zettelkasten-${{ steps.get_version.outputs.VERSION }}.app
-          ./target/Zettelkasten-${{ steps.get_version.outputs.VERSION }}.dmg
+          ./target/Zettelkasten*.jar
+          ./target/Zettelkasten*.exe
+          ./target/Zettelkasten*.app
+          ./target/Zettelkasten*.dmg
